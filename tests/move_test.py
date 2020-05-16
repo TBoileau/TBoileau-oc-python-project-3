@@ -1,5 +1,3 @@
-from typing import List
-
 import pytest
 
 from src.domain.maze.entity.case import Case
@@ -9,20 +7,36 @@ from src.domain.maze.resolver.maze_resolver import MazeResolver
 from src.domain.maze.value_object.direction import Direction
 
 
-def test_if_player_move_on_maze_to_the_end():
+def test_if_player_win():
     maze: Maze = Maze(3, 3, "Mac Gyver", "Guard", ['ether', 'needle', 'wood'])
-    steps: List[Case, bool] = [
-        (maze.cases_with_items[0], True),
-        (maze.cases_with_items[1], True),
-        (maze.cases_with_items[2], True),
-        (maze.end, False)
-    ]
-    for step in steps:
-        maze_resolver: MazeResolver = MazeResolver(maze).resolve(*step)
+    maze_resolver: MazeResolver = MazeResolver(maze)
+
+    def resolve(case: Case, back: bool):
+        maze_resolver.resolve(case, back)
         for direction in maze_resolver.directions:
             maze.player.move(direction)
+
+    for cell in maze.cells:
+        if isinstance(cell, Case) and cell.item is not None:
+            resolve(cell, True)
+    resolve(maze.end, False)
+
     assert maze.end == maze.player.case
     assert len(maze.player.items) == 3
+    assert maze.player.finished
+    assert maze.player.win
+
+
+def test_if_player_lose():
+    maze: Maze = Maze(7, 7, "Mac Gyver", "Guard", ['ether', 'needle', 'wood'])
+
+    maze_resolver: MazeResolver = MazeResolver(maze).resolve(maze.end, False)
+    for direction in maze_resolver.directions:
+        maze.player.move(direction)
+
+    assert maze.end == maze.player.case
+    assert maze.player.finished
+    assert not maze.player.win
 
 
 def test_if_failed_with_wrong_direction():
