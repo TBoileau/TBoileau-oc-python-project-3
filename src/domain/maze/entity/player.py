@@ -11,6 +11,8 @@ class Player(Character):
     def __init__(self, name: str, maze):
         super().__init__(name, maze)
         self.items: List[Item] = []
+        self.finished: bool = False
+        self.win: bool = False
 
     def start(self):
         self.case = self.maze.start
@@ -24,3 +26,6 @@ class Player(Character):
         if self.case.item is not None:
             self.items.append(self.case.item)
             self.case.item.pick_up()
+        if self.case == self.maze.end:
+            self.finished = True
+            self.win = len(self.items) == len(self.maze.items)
