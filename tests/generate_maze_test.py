@@ -12,12 +12,12 @@ def test_if_maze_creation_is_successful():
     assert maze.y == 5
     assert isinstance(maze.player, Player)
     assert maze.player.name == "Mac Gyver"
-    assert maze.player.cell == maze.start
+    assert maze.player.case == maze.start
     assert isinstance(maze.enemy, Enemy)
     assert maze.enemy.name == "Guard"
-    assert maze.enemy.cell == maze.end
+    assert maze.enemy.case == maze.end
     assert len(maze.cells) == 121
-    assert len(maze.cells_with_items) == 3
+    assert len(maze.cases_with_items) == 3
 
 
 def test_if_x_and_x_are_too_small():
@@ -30,7 +30,7 @@ def test_if_number_of_items_is_not_equal_to_3():
         Maze(5, 5, "Mac Gyver", "Guard", ['ether'])
 
 
-def test_if_enemy_is_empty():
+def test_if_enemy_is_case():
     with pytest.raises(AssertionError):
         Maze(5, 5, "Mac Gyver", "", ['ether', 'needle', 'wood'])
 
@@ -40,7 +40,7 @@ def test_if_enemy_has_only_space():
         Maze(5, 5, "Mac Gyver", " ", ['ether', 'needle', 'wood'])
 
 
-def test_if_player_is_empty():
+def test_if_player_is_case():
     with pytest.raises(AssertionError):
         Maze(5, 5, "", "Guard", ['ether', 'needle', 'wood'])
 

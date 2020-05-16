@@ -1,7 +1,10 @@
-from src.domain.maze.entity.cell import Cell
+from typing import Union, Any
 
 
 class Item:
-    def __init__(self, name: str, cell: Cell):
+    def __init__(self, name: str, case):
         self.name: str = name
-        self.cell: Cell = cell
+        self.case: Union[Any, None] = case
+
+    def pick_up(self):
+        self.case.remove_item()

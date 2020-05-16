@@ -1,5 +1,5 @@
-from src.domain.maze.entity.empty import Cell
+from src.domain.maze.entity.case import Case
 
 
-class End(Cell):
+class End(Case):
     pass
