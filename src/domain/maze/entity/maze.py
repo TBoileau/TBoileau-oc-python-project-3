@@ -1,3 +1,4 @@
+import random
 from typing import List, Union
 
 from src.domain.maze.entity.cell import Cell
@@ -12,18 +13,29 @@ from src.domain.maze.value_object.position import Position
 
 
 class Maze:
-    def __init__(self, x: int, y: int, player_name: str, enemy_name: str):
+    def __init__(
+            self,
+            x: int,
+            y: int,
+            player_name: str,
+            enemy_name: str,
+            items: List[str]
+    ):
         player_name = player_name.strip()
         enemy_name = enemy_name.strip()
         assert x > 2
         assert y > 2
+        assert len(items) == 3
         assert player_name != ""
         assert enemy_name != ""
         self.x: int = x
         self.y: int = y
+        self.items: List[str] = items
         self.player: Player = Player(player_name, self)
         self.enemy: Enemy = Enemy(enemy_name, self)
         self.cells: List[Cell] = []
+        self.empty_cells: List[Cell] = []
+        self.cells_with_items: List[Cell] = []
         self.start: Start
         self.end: End
         self.generate()
@@ -33,7 +45,9 @@ class Maze:
         for y in range(len(rows)):
             for x in range(len(rows[y])):
                 if rows[y][x] == MazeGenerator.EMPTY:
-                    self.cells.append(Empty(Position(x, y)))
+                    empty: Empty = Empty(Position(x, y))
+                    self.cells.append(empty)
+                    self.empty_cells.append(empty)
                 if rows[y][x] == MazeGenerator.WALL:
                     self.cells.append(Wall(Position(x, y)))
                 if rows[y][x] == MazeGenerator.START:
@@ -44,6 +58,12 @@ class Maze:
                     self.end = End(Position(x, y))
                     self.cells.append(self.end)
                     self.enemy.start()
+
+        for item in self.items:
+            random_cell: Empty = random.choice(self.empty_cells)
+            random_cell.add_item(item)
+            self.empty_cells.remove(random_cell)
+            self.cells_with_items.append(random_cell)
 
     def get_cell(self, position: Position) -> Union[Cell, None]:
         for cell in self.cells:
