@@ -25,7 +25,7 @@ class Maze:
         enemy_name = enemy_name.strip()
         assert x > 2
         assert y > 2
-        assert len(items) == 3
+        assert len(items) > 0
         assert player_name != ""
         assert enemy_name != ""
         self.x: int = x
@@ -34,20 +34,19 @@ class Maze:
         self.player: Player = Player(player_name, self)
         self.enemy: Enemy = Enemy(enemy_name, self)
         self.cells: List[Cell] = []
-        self.cases: List[Case] = []
-        self.cases_with_items: List[Case] = []
         self.start: Start
         self.end: End
         self.generate()
 
     def generate(self):
         rows = MazeGenerator.generate(self.x, self.y)
+        empty_cases: List[Case] = []
         for y in range(len(rows)):
             for x in range(len(rows[y])):
                 if rows[y][x] == MazeGenerator.EMPTY:
                     case: Case = Case(Position(x, y))
                     self.cells.append(case)
-                    self.cases.append(case)
+                    empty_cases.append(case)
                 if rows[y][x] == MazeGenerator.WALL:
                     self.cells.append(Wall(Position(x, y)))
                 if rows[y][x] == MazeGenerator.START:
@@ -60,10 +59,9 @@ class Maze:
                     self.enemy.start()
 
         for item in self.items:
-            random_cell: Case = random.choice(self.cases)
+            random_cell: Case = random.choice(empty_cases)
             random_cell.add_item(item)
-            self.cases.remove(random_cell)
-            self.cases_with_items.append(random_cell)
+            empty_cases.remove(random_cell)
 
     def get_case(self, position: Position) -> Union[Cell, None]:
         for cell in self.cells:
