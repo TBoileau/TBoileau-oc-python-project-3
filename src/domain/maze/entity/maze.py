@@ -12,15 +12,17 @@ from src.domain.maze.value_object.position import Position
 
 
 class Maze:
-    def __init__(self, x: int, y: int, player_name: str):
+    def __init__(self, x: int, y: int, player_name: str, enemy_name: str):
         player_name = player_name.strip()
+        enemy_name = enemy_name.strip()
         assert x > 2
         assert y > 2
         assert player_name != ""
+        assert enemy_name != ""
         self.x: int = x
         self.y: int = y
         self.player: Player = Player(player_name, self)
-        self.enemy: Enemy = Enemy()
+        self.enemy: Enemy = Enemy(enemy_name, self)
         self.cells: List[Cell] = []
         self.start: Start
         self.end: End
@@ -41,6 +43,7 @@ class Maze:
                 if rows[y][x] == MazeGenerator.END:
                     self.end = End(Position(x, y))
                     self.cells.append(self.end)
+                    self.enemy.start()
 
     def get_cell(self, position: Position) -> Union[Cell, None]:
         for cell in self.cells:
