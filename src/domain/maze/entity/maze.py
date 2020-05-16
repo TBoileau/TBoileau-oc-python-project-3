@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from src.domain.maze.entity.cell import Cell
 from src.domain.maze.entity.empty import Empty
@@ -41,3 +41,15 @@ class Maze:
                 if rows[y][x] == MazeGenerator.END:
                     self.end = End(Position(x, y))
                     self.cells.append(self.end)
+
+    def get_cell(self, position: Position) -> Union[Cell, None]:
+        for cell in self.cells:
+            if cell.position.x == position.x \
+                    and cell.position.y == position.y \
+                    and (isinstance(cell, Empty) or isinstance(cell, End)):
+                return cell
+        return None
+
+    def next_cell(self, cell: Cell, direction: str) -> Union[Cell, None]:
+        next_position: Position = cell.position.next_position(direction)
+        return self.get_cell(next_position)
