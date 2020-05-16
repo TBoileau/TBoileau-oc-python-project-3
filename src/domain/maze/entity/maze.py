@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List
 
 from src.domain.maze.entity.cell import Cell
 from src.domain.maze.entity.empty import Empty
