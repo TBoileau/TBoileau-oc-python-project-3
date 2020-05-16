@@ -7,11 +7,12 @@ from src.domain.maze.resolver.maze_resolver import MazeResolver
 from src.domain.maze.value_object.direction import Direction
 
 
-def test_if_player_finish_the_maze():
+def test_if_player_win():
     maze: Maze = Maze(3, 3, "Mac Gyver", "Guard", ['ether', 'needle', 'wood'])
+    maze_resolver: MazeResolver = MazeResolver(maze)
 
     def resolve(case: Case, back: bool):
-        maze_resolver: MazeResolver = MazeResolver(maze).resolve(case, back)
+        maze_resolver.resolve(case, back)
         for direction in maze_resolver.directions:
             maze.player.move(direction)
 
@@ -22,6 +23,20 @@ def test_if_player_finish_the_maze():
 
     assert maze.end == maze.player.case
     assert len(maze.player.items) == 3
+    assert maze.player.finished
+    assert maze.player.win
+
+
+def test_if_player_lose():
+    maze: Maze = Maze(7, 7, "Mac Gyver", "Guard", ['ether', 'needle', 'wood'])
+
+    maze_resolver: MazeResolver = MazeResolver(maze).resolve(maze.end, False)
+    for direction in maze_resolver.directions:
+        maze.player.move(direction)
+
+    assert maze.end == maze.player.case
+    assert maze.player.finished
+    assert not maze.player.win
 
 
 def test_if_failed_with_wrong_direction():
