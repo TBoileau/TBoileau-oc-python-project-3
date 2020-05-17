@@ -15,6 +15,7 @@ coverage:
 
 coding-style:
 	./venv/Scripts/python -m flake8 ./src ./tests
+	./venv/Scripts/python -m pydocstyle ./src ./tests ./main.py
 
 build:
 	./venv/Scripts/python -m PyInstaller maze.spec
