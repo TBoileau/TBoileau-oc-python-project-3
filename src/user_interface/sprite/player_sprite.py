@@ -1,3 +1,4 @@
+"""Import libraries."""
 from typing import Dict
 
 import pygame
@@ -11,7 +12,26 @@ from src.domain.maze.value_object.direction import Direction
 
 
 class PlayerSprite(Sprite):
+    """
+    PlayerSprite.
+
+    It contains an instance of Player from domain
+    that will be placed in group of sprites
+    belonging to MazeComponent.
+    """
+
     def __init__(self, player: Player):
+        """
+        Define player stripe.
+
+        Add enemy in maze UI.
+        Load images from assets folder,
+        and place it in maze.
+        According to the direction,
+        the image will be different.
+
+        :param player:
+        """
         Sprite.__init__(self)
         self.player = player
         self.images: Dict[str, Surface] = {
@@ -48,6 +68,11 @@ class PlayerSprite(Sprite):
         )
 
     def move(self, direction):
+        """
+        Move player on the maze UI.
+
+        :param direction:
+        """
         try:
             self.player.move(direction)
         except BadCellException:
