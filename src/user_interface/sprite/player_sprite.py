@@ -4,6 +4,7 @@ import pygame
 from pygame.sprite import Sprite
 from pygame.surface import Surface
 
+from config import CurrentPath
 from src.domain.maze.entity.player import Player
 from src.domain.maze.exception.bad_cell_exception import BadCellException
 from src.domain.maze.value_object.direction import Direction
@@ -15,19 +16,27 @@ class PlayerSprite(Sprite):
         self.player = player
         self.images: Dict[str, Surface] = {
             Direction.UP: pygame.transform.scale(
-                pygame.image.load("assets/img/north.png").convert_alpha(),
+                pygame.image.load(
+                    CurrentPath + "/assets/img/north.png"
+                ).convert_alpha(),
                 (50, 50)
             ),
             Direction.DOWN: pygame.transform.scale(
-                pygame.image.load("assets/img/south.png").convert_alpha(),
+                pygame.image.load(
+                    CurrentPath + "/assets/img/south.png"
+                ).convert_alpha(),
                 (50, 50)
             ),
             Direction.RIGHT: pygame.transform.scale(
-                pygame.image.load("assets/img/east.png").convert_alpha(),
+                pygame.image.load(
+                    CurrentPath + "/assets/img/east.png"
+                ).convert_alpha(),
                 (50, 50)
             ),
             Direction.LEFT: pygame.transform.scale(
-                pygame.image.load("assets/img/west.png").convert_alpha(),
+                pygame.image.load(
+                    CurrentPath + "/assets/img/west.png"
+                ).convert_alpha(),
                 (50, 50)
             )
         }

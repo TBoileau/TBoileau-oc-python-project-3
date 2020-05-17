@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
+from config import CurrentPath
 from src.domain.maze.entity.item import Item
 
 
@@ -10,7 +11,7 @@ class BackpackItemSprite(Sprite):
         self.item: Item = item
         self.image: pygame.Surface = pygame.transform.scale(
             pygame.image.load(
-                "assets/img/%s.png" % self.item.name
+                CurrentPath + "/assets/img/%s.png" % self.item.name
             ).convert_alpha(),
             (25, 25)
         )

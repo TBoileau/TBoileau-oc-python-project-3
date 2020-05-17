@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Group
 
+from config import CurrentPath
 from src.domain.maze.entity.case import Case
 from src.domain.maze.entity.cell import Cell
 from src.domain.maze.entity.wall import Wall
@@ -23,7 +24,9 @@ class CellComponent:
     def render(self):
         self.window.blit(
             pygame.transform.scale(
-                pygame.image.load('assets/img/case.png').convert(),
+                pygame.image.load(
+                    CurrentPath + '/assets/img/case.png'
+                ).convert(),
                 (69, 98)
             ),
             (self.x, self.y),
@@ -33,7 +36,9 @@ class CellComponent:
         if isinstance(self.cell, Wall):
             self.window.blit(
                 pygame.transform.scale(
-                    pygame.image.load('assets/img/wall.png').convert(),
+                    pygame.image.load(
+                        CurrentPath + '/assets/img/wall.png'
+                    ).convert(),
                     (69, 66)
                 ),
                 (self.x, self.y),
