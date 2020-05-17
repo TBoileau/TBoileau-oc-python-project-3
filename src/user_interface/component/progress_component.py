@@ -18,7 +18,7 @@ class ProgressComponent:
         self.group: Group = pygame.sprite.Group()
         x: int = 150
         for item in self.maze.player.items:
-            self.item: BackpackItemSprite = BackpackItemSprite(item, x, 6)
+            self.item: BackpackItemSprite = BackpackItemSprite(item, x, 4)
             self.group.add(self.item)
             x += 50
 
