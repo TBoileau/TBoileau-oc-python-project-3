@@ -34,6 +34,8 @@ def test_if_player_lose():
     for direction in maze_resolver.directions:
         maze.player.move(direction)
 
+    maze.player.items = []
+
     assert maze.end == maze.player.case
     assert maze.player.finished
     assert not maze.player.win
