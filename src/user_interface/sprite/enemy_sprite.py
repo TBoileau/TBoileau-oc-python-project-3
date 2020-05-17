@@ -15,5 +15,5 @@ class EnemySprite(Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (
             self.enemy.case.position.x * 69 + 12,
-            self.enemy.case.position.y * 49
+            self.enemy.case.position.y * 49 + 33
         )

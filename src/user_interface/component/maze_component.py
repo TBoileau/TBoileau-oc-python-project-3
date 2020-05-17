@@ -4,6 +4,7 @@ from pygame.sprite import Group
 from src.domain.maze.entity.maze import Maze
 from src.domain.maze.value_object.direction import Direction
 from src.user_interface.component.cell_component import CellComponent
+from src.user_interface.component.progress_component import ProgressComponent
 from src.user_interface.sprite.enemy_sprite import EnemySprite
 from src.user_interface.sprite.player_sprite import PlayerSprite
 
@@ -15,7 +16,7 @@ class MazeComponent:
         self.window: pygame.Surface = pygame.display.set_mode(
             (
                 (self.maze.x * 2 + 1) * 69,
-                (self.maze.y * 2 + 1) * 49 + 34,
+                (self.maze.y * 2 + 1) * 49 + 50,
             )
         )
         self.player: PlayerSprite = PlayerSprite(self.maze.player)
@@ -51,5 +52,6 @@ class MazeComponent:
             for cell in self.maze.cells:
                 CellComponent(cell, self.window).render()
 
+            ProgressComponent(self.maze, self.window).render()
             self.group.draw(self.window)
             pygame.display.update()

@@ -35,7 +35,7 @@ class PlayerSprite(Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (
             self.player.case.position.x * 69 + 12,
-            self.player.case.position.y * 49
+            self.player.case.position.y * 49 + 33
         )
 
     def move(self, direction):
@@ -45,6 +45,6 @@ class PlayerSprite(Sprite):
             print("Bad direction")
         self.rect.topleft = (
             self.player.case.position.x * 69 + 12,
-            self.player.case.position.y * 49
+            self.player.case.position.y * 49 + 33
         )
         self.image = self.images[direction]

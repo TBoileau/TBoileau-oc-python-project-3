@@ -12,7 +12,7 @@ class CellComponent:
         self.cell: Cell = cell
         self.window: pygame.Surface = window
         self.x: int = cell.position.x * 69
-        self.y: int = cell.position.y * 49 + 17
+        self.y: int = cell.position.y * 49 + 50
         self.group: Group = pygame.sprite.Group()
         if isinstance(cell, Wall):
             self.y -= 17
@@ -26,7 +26,7 @@ class CellComponent:
                 pygame.image.load('assets/img/case.png').convert(),
                 (69, 98)
             ),
-            (self.cell.position.x * 69, self.cell.position.y * 49 + 17),
+            (self.x, self.y),
             (0, 0, 69, 66)
         )
 
@@ -36,7 +36,7 @@ class CellComponent:
                     pygame.image.load('assets/img/wall.png').convert(),
                     (69, 66)
                 ),
-                (self.cell.position.x * 69, self.cell.position.y * 49),
+                (self.x, self.y),
                 (0, 0, 69, 66)
             )
 
