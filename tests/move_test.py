@@ -8,7 +8,9 @@ from src.domain.maze.value_object.direction import Direction
 
 
 def test_if_player_win():
-    maze: Maze = Maze(3, 3, "Mac Gyver", "Guard", ['ether', 'needle', 'wood'])
+    maze: Maze = Maze(
+        3, 3, "Mac Gyver", "Guard", ['ether', 'needle', 'plastic_tube']
+    )
     maze_resolver: MazeResolver = MazeResolver(maze)
 
     def resolve(case: Case, back: bool):
@@ -28,11 +30,15 @@ def test_if_player_win():
 
 
 def test_if_player_lose():
-    maze: Maze = Maze(7, 7, "Mac Gyver", "Guard", ['ether', 'needle', 'wood'])
+    maze: Maze = Maze(
+        5, 5, "Mac Gyver", "Guard", ['ether', 'needle', 'plastic_tube']
+    )
 
     maze_resolver: MazeResolver = MazeResolver(maze).resolve(maze.end, False)
     for direction in maze_resolver.directions:
         maze.player.move(direction)
+
+    maze.player.items = []
 
     assert maze.end == maze.player.case
     assert maze.player.finished
@@ -46,7 +52,7 @@ def test_if_failed_with_wrong_direction():
             5,
             "Mac Gyver",
             "Guard",
-            ['ether', 'needle', 'wood']
+            ['ether', 'needle', 'plastic_tube']
         )
         maze.player.move("fail")
 
@@ -58,6 +64,6 @@ def test_if_failed_with_bad_direction():
             5,
             "Mac Gyver",
             "Guard",
-            ['ether', 'needle', 'wood']
+            ['ether', 'needle', 'plastic_tube']
         )
         maze.player.move(Direction.DOWN)

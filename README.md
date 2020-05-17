@@ -35,7 +35,7 @@ make coding-style
 
 Lancez la série de tests unitaires :
 ```
-make tests
+make test
 ```
 
 Avec un reporting html :
