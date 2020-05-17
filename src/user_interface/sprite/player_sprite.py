@@ -1,10 +1,11 @@
-from typing import Dict, Any
+from typing import Dict
 
 import pygame
 from pygame.sprite import Sprite
 from pygame.surface import Surface
 
 from src.domain.maze.entity.player import Player
+from src.domain.maze.exception.bad_cell_exception import BadCellException
 from src.domain.maze.value_object.direction import Direction
 
 
@@ -40,7 +41,7 @@ class PlayerSprite(Sprite):
     def move(self, direction):
         try:
             self.player.move(direction)
-        except:
+        except BadCellException:
             print("Bad direction")
         self.rect.topleft = (
             self.player.case.position.x * 69 + 12,

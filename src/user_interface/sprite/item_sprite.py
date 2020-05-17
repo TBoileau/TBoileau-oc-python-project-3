@@ -9,7 +9,9 @@ class ItemSprite(Sprite):
         Sprite.__init__(self)
         self.item: Item = item
         self.image: pygame.Surface = pygame.transform.scale(
-            pygame.image.load("assets/img/%s.png" % self.item.name).convert_alpha(),
+            pygame.image.load(
+                "assets/img/%s.png" % self.item.name
+            ).convert_alpha(),
             (50, 50)
         )
         self.rect = self.image.get_rect()
