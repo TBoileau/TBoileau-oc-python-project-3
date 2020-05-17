@@ -3,7 +3,7 @@ from src.user_interface.component.maze_component import MazeComponent
 
 
 def run():
-    maze: Maze = Maze(7, 7, "Mac Gyver", "Guard", ['ether', 'needle', 'wood'])
+    maze: Maze = Maze(7, 7, "Mac Gyver", "Guard", ['ether', 'needle', 'woods'])
     component: MazeComponent = MazeComponent(maze)
     component.render()
 
