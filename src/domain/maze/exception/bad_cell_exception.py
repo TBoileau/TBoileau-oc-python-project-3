@@ -1,0 +1,2 @@
+class BadCellException(Exception):
+    pass

@@ -4,6 +4,7 @@ OpenClassrooms - DA Python - Projet 3
 # Pré-requis
 
 * Python 3.7.7 ou plus
+* PIP
 
 *Note : attention, dans certains cas il est possible que `pygame` ne s'installe pas correctement, car `pygame 1.9.6` n'est pas pris en charge par `Python 3.8`, et il n'existe à ce jour aucune version **LTS** (Long Term Support) pour `Python 3.8`.*
 
@@ -35,10 +36,17 @@ make coding-style
 
 Lancez la série de tests unitaires :
 ```
-make tests
+make test
 ```
 
 Avec un reporting html :
 ```
 make coverage
+```
+
+# Générer la distribution
+
+Exécutez la commande suivante :
+```
+make build
 ```

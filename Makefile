@@ -1,4 +1,4 @@
-.PHONY: install
+.PHONY: install build
 install:
 	python -m pip install --upgrade pip
 	python -m venv ./venv
@@ -15,3 +15,6 @@ coverage:
 
 coding-style:
 	./venv/Scripts/python -m flake8 ./src ./tests
+
+build:
+	./venv/Scripts/python -m PyInstaller maze.spec
