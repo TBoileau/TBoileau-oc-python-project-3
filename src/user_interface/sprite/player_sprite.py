@@ -8,7 +8,7 @@ from pygame.surface import Surface
 from config import CurrentPath
 from src.domain.maze.entity.player import Player
 from src.domain.maze.exception.bad_cell_exception import BadCellException
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 
 
 class PlayerSprite(Sprite):

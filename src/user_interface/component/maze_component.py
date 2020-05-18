@@ -3,7 +3,7 @@ import pygame
 from pygame.sprite import Group
 
 from src.domain.maze.entity.maze import Maze
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 from src.user_interface.component.cell_component import CellComponent
 from src.user_interface.component.lose_component import LoseComponent
 from src.user_interface.component.progress_component import ProgressComponent

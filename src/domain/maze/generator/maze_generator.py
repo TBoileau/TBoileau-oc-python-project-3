@@ -1,7 +1,7 @@
 import random
 from typing import List, Tuple, Dict
 
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 
 
 class MazeGenerator:

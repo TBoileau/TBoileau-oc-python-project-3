@@ -4,7 +4,7 @@ from typing import List, Union
 from src.domain.maze.entity.case import Case
 from src.domain.maze.entity.cell import Cell
 from src.domain.maze.entity.maze import Maze
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 
 
 class MazeResolver:
