@@ -1,3 +1,4 @@
+"""Import libraries."""
 import pygame
 from pygame.font import Font
 from pygame.rect import Rect
@@ -9,7 +10,22 @@ from src.user_interface.sprite.backpack_item_sprite import BackpackItemSprite
 
 
 class ProgressComponent:
+    """
+    ProgressComponent.
+
+    This component display information about the player's progress.
+    """
+
     def __init__(self, maze: Maze, window: pygame.Surface):
+        """
+        Create an area to display the player's progress.
+
+        Write the player's name, and create a group who contains
+        the list of picked up item sprites.
+
+        :param maze:
+        :param window:
+        """
         self.maze: Maze = maze
         self.window: pygame.Surface = window
         font = pygame.font.Font(
@@ -27,5 +43,6 @@ class ProgressComponent:
             x += 50
 
     def render(self):
+        """Display the player's name and items sprites."""
         self.window.blit(self.text, self.text_rect)
         self.group.draw(self.window)
