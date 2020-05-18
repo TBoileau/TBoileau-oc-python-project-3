@@ -1,14 +1,33 @@
+"""Import libraries."""
 from typing import Tuple, Dict
 
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 
 
 class Position:
+    """
+    Position.
+
+    This class is a value object of a position, define by a X and Y points.
+    """
+
     def __init__(self, x: int, y: int):
+        """
+        Define X and Y points.
+
+        :param x:
+        :param y:
+        """
         self.x: int = x
         self.y: int = y
 
     def next_position(self, direction: str) -> "Position":
+        """
+        Return new position according to a direction and the current position.
+
+        :param direction:
+        :return:
+        """
         directions: Tuple[Dict[str, int], Dict[str, int]] = (
             {
                 Direction.UP: 0,
