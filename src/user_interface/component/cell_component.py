@@ -37,7 +37,7 @@ class CellComponent:
 
     def render(self):
         """
-        Display a case cell
+        Display a case cell.
 
         Add a wall on top of it, if the instance of item
         from the domain is a Wall.
