@@ -4,7 +4,7 @@ from src.domain.maze.entity.case import Case
 from src.domain.maze.entity.maze import Maze
 from src.domain.maze.exception.bad_cell_exception import BadCellException
 from src.domain.maze.resolver.maze_resolver import MazeResolver
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 
 
 def test_if_player_win():

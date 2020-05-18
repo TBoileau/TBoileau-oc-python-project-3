@@ -1,3 +1,4 @@
+"""Import libraries."""
 import pygame
 from pygame.sprite import Sprite
 
@@ -6,7 +7,24 @@ from src.domain.maze.entity.enemy import Enemy
 
 
 class EnemySprite(Sprite):
+    """
+    EnemySprite.
+
+    It contains an instance of Enemy from domain
+    that will be placed in group of sprites
+    belonging to MazeComponent.
+    """
+
     def __init__(self, enemy: Enemy):
+        """
+        Define enemy stripe.
+
+        Add enemy in maze UI.
+        Load image from assets folder,
+        and place it in maze on the end cell.
+
+        :param enemy:
+        """
         Sprite.__init__(self)
         self.enemy: Enemy = enemy
         self.image: pygame.Surface = pygame.transform.scale(

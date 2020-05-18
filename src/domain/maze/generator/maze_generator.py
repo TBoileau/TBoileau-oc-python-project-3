@@ -1,10 +1,17 @@
+"""Import libraries."""
 import random
 from typing import List, Tuple, Dict
 
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 
 
 class MazeGenerator:
+    """
+    MazeGenerator.
+
+    This class generate a maze with Prim algorithm.
+    """
+
     START: int = 2
     WALL: int = 0
     END: int = 3
@@ -12,10 +19,21 @@ class MazeGenerator:
 
     @staticmethod
     def new_position(
-            position:
-            Tuple[int, int],
-            pad: int, direction: str
+            position: Tuple[int, int],
+            pad: int,
+            direction: str
     ) -> Tuple[int, int]:
+        """
+        Return the new position.
+
+        Considering a current position, a pad and a specific direction,
+        return the next position.
+
+        :param position:
+        :param pad:
+        :param direction:
+        :return:
+        """
         directions: Tuple[Dict[str, int], Dict[str, int]] = (
             {
                 Direction.UP: 0,
@@ -37,6 +55,19 @@ class MazeGenerator:
 
     @staticmethod
     def generate(x: int, y: int) -> List[List[int]]:
+        """
+        Generate a maze.
+
+        With Prim algorithm, we generate a maze that contains 4 types of cell.
+        0 : wall
+        1 : empty cell
+        2 : start cell
+        3 : end cell.
+
+        :param x:
+        :param y:
+        :return:
+        """
         cells: List[List[int]] = [
             [0 for x in range(2 * x + 1)] for y in range(2 * y + 1)
         ]
