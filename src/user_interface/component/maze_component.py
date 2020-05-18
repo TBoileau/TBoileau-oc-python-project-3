@@ -16,7 +16,7 @@ class MazeComponent:
     """
     MazeComponent.
 
-    This component display the game with the maze in it,
+    This component display the game with the mazess in it,
     and group of sprites, like player and enemy.
     """
 
@@ -43,7 +43,7 @@ class MazeComponent:
 
     def render(self):
         """
-        Display the maze.
+        Display the mazess.
 
         Rendering cell, player's progress and sprites (player and enemy).
         If the user use the escape key on his keyboard,

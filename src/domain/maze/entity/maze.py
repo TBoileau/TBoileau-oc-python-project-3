@@ -9,7 +9,7 @@ from src.domain.maze.entity.enemy import Enemy
 from src.domain.maze.entity.player import Player
 from src.domain.maze.entity.start import Start
 from src.domain.maze.entity.wall import Wall
-from src.domain.maze.generator.maze_generator import MazeGenerator
+from src.domain.maze.port.maze_generator_port import MazeGeneratorPort
 from src.domain.maze.value_object.position import Position
 
 
@@ -17,12 +17,13 @@ class Maze:
     """
     Maze.
 
-    A maze contains a set of cells,
+    A mazess contains a set of cells,
     a player and his enemy, as well as a set of items.
     """
 
     def __init__(
             self,
+            maze_generator: MazeGeneratorPort,
             x: int,
             y: int,
             player_name: str,
@@ -30,11 +31,11 @@ class Maze:
             items: List[str]
     ):
         """
-        Initialize maze.
+        Initialize mazess.
 
         Check if the player and enemy names are not empty.
         Check if the number of case in x and y are greater than 2.
-        We use the maze generator to generate the cells of maze.
+        We use the mazess generator to generate the cells of mazess.
 
         :param x:
         :param y:
@@ -49,6 +50,7 @@ class Maze:
         assert len(items) > 0
         assert player_name != ""
         assert enemy_name != ""
+        self.maze_generator: MazeGeneratorPort = maze_generator
         self.x: int = x
         self.y: int = y
         self.items: List[str] = items
@@ -61,25 +63,25 @@ class Maze:
 
     def generate(self):
         """
-        Generate maze.
+        Generate mazess.
 
         Using the MazeGenerator for populate cells.
         """
-        rows = MazeGenerator.generate(self.x, self.y)
+        rows = self.maze_generator.generate(self.x, self.y)
         empty_cases: List[Case] = []
         for y in range(len(rows)):
             for x in range(len(rows[y])):
-                if rows[y][x] == MazeGenerator.EMPTY:
+                if rows[y][x] == MazeGeneratorPort.EMPTY:
                     case: Case = Case(Position(x, y))
                     self.cells.append(case)
                     empty_cases.append(case)
-                if rows[y][x] == MazeGenerator.WALL:
+                if rows[y][x] == MazeGeneratorPort.WALL:
                     self.cells.append(Wall(Position(x, y)))
-                if rows[y][x] == MazeGenerator.START:
+                if rows[y][x] == MazeGeneratorPort.START:
                     self.start = Start(Position(x, y))
                     self.cells.append(self.start)
                     self.player.start()
-                if rows[y][x] == MazeGenerator.END:
+                if rows[y][x] == MazeGeneratorPort.END:
                     self.end = End(Position(x, y))
                     self.cells.append(self.end)
                     self.enemy.start()
