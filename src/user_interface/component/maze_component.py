@@ -1,8 +1,9 @@
+"""Import libraries."""
 import pygame
 from pygame.sprite import Group
 
 from src.domain.maze.entity.maze import Maze
-from src.domain.maze.value_object.direction import Direction
+from src.domain.maze.store.direction import Direction
 from src.user_interface.component.cell_component import CellComponent
 from src.user_interface.component.lose_component import LoseComponent
 from src.user_interface.component.progress_component import ProgressComponent
@@ -12,7 +13,21 @@ from src.user_interface.sprite.player_sprite import PlayerSprite
 
 
 class MazeComponent:
+    """
+    MazeComponent.
+
+    This component display the game with the maze in it,
+    and group of sprites, like player and enemy.
+    """
+
     def __init__(self, maze: Maze):
+        """
+        Create the pygame window.
+
+        Add a group of sprite with player and enemy sprites.
+
+        :param maze:
+        """
         self.maze: Maze = maze
         pygame.init()
         self.window: pygame.Surface = pygame.display.set_mode(
@@ -27,6 +42,16 @@ class MazeComponent:
         self.group.add(EnemySprite(self.maze.enemy))
 
     def render(self):
+        """
+        Display the maze.
+
+        Rendering cell, player's progress and sprites (player and enemy).
+        If the user use the escape key on his keyboard,
+        then the game is over and the window is shutdown.
+        If the user use a arrow key, then the player
+        will move according to the direction of the key.
+        if the player reaches the end of the game, the end popup is displayed.
+        """
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT \

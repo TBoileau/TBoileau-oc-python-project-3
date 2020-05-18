@@ -1,3 +1,4 @@
+"""Import libraries."""
 import pygame
 from pygame.sprite import Group
 
@@ -9,7 +10,20 @@ from src.user_interface.sprite.item_sprite import ItemSprite
 
 
 class CellComponent:
+    """
+    CellComponent.
+
+    This component display a cell with a group of sprite
+    who contains an item to pick up.
+    """
+
     def __init__(self, cell: Cell, window: pygame.Surface):
+        """
+        Create and position a cell in maze.
+
+        :param cell:
+        :param window:
+        """
         self.cell: Cell = cell
         self.window: pygame.Surface = window
         self.x: int = cell.position.x * 69
@@ -22,6 +36,12 @@ class CellComponent:
             self.group.add(self.item)
 
     def render(self):
+        """
+        Display a case cell.
+
+        Add a wall on top of it, if the instance of item
+        from the domain is a Wall.
+        """
         self.window.blit(
             pygame.transform.scale(
                 pygame.image.load(
