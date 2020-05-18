@@ -32,7 +32,7 @@ class Player(Character):
     @property
     def win(self):
         """
-        Check if player as picked up all items
+        Check if player as picked up all items.
 
         :return:
         """
