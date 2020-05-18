@@ -24,9 +24,9 @@ class PlayerSprite(Sprite):
         """
         Define player stripe.
 
-        Add enemy in maze UI.
+        Add enemy in mazess UI.
         Load images from assets folder,
-        and place it in maze.
+        and place it in mazess.
         According to the direction,
         the image will be different.
 
@@ -69,7 +69,7 @@ class PlayerSprite(Sprite):
 
     def move(self, direction):
         """
-        Move player on the maze UI.
+        Move player on the mazess UI.
 
         :param direction:
         """

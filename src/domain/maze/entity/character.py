@@ -11,7 +11,7 @@ class Character:
 
     def __init__(self, name: str, maze):
         """
-        Define case, maze and name of character.
+        Define case, mazess and name of character.
 
         :param name:
         :param maze:
