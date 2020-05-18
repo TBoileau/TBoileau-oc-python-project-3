@@ -1,3 +1,4 @@
+"""Import libraries."""
 import random
 from typing import List, Union
 
@@ -13,6 +14,13 @@ from src.domain.maze.value_object.position import Position
 
 
 class Maze:
+    """
+    Maze.
+
+    A maze contains a set of cells,
+    a player and his enemy, as well as a set of items.
+    """
+
     def __init__(
             self,
             x: int,
@@ -21,6 +29,19 @@ class Maze:
             enemy_name: str,
             items: List[str]
     ):
+        """
+        Initialize maze.
+
+        Check if the player and enemy names are not empty.
+        Check if the number of case in x and y are greater than 2.
+        We use the maze generator to generate the cells of maze.
+
+        :param x:
+        :param y:
+        :param player_name:
+        :param enemy_name:
+        :param items:
+        """
         player_name = player_name.strip()
         enemy_name = enemy_name.strip()
         assert x > 2
@@ -39,6 +60,11 @@ class Maze:
         self.generate()
 
     def generate(self):
+        """
+        Generate maze.
+
+        Using the MazeGenerator for populate cells.
+        """
         rows = MazeGenerator.generate(self.x, self.y)
         empty_cases: List[Case] = []
         for y in range(len(rows)):
@@ -64,6 +90,12 @@ class Maze:
             empty_cases.remove(random_cell)
 
     def get_case(self, position: Position) -> Union[Cell, None]:
+        """
+        Get a case from his position.
+
+        :param position:
+        :return:
+        """
         for cell in self.cells:
             if cell.position.x == position.x \
                     and cell.position.y == position.y \
@@ -72,5 +104,14 @@ class Maze:
         return None
 
     def next_case(self, case: Case, direction: str) -> Union[Case, None]:
+        """
+        Get the next case.
+
+        According to a direction and the current case.
+
+        :param case:
+        :param direction:
+        :return:
+        """
         next_position: Position = case.position.next_position(direction)
         return self.get_case(next_position)

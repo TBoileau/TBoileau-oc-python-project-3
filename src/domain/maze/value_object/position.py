@@ -23,7 +23,9 @@ class Position:
 
     def next_position(self, direction: str) -> "Position":
         """
-        Return new position according to a direction and the current position.
+        Return new position.
+
+        According to a direction and the current position.
 
         :param direction:
         :return:
