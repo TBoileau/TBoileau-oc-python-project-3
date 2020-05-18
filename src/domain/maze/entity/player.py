@@ -28,7 +28,15 @@ class Player(Character):
         super().__init__(name, maze)
         self.items: List[Item] = []
         self.finished: bool = False
-        self.win: bool = False
+
+    @property
+    def win(self):
+        """
+        Check if player as picked up all items
+
+        :return:
+        """
+        return len(self.items) == len(self.maze.items)
 
     def start(self):
         """Place the player of the start case of maze."""
@@ -57,4 +65,3 @@ class Player(Character):
             self.case.item.pick_up()
         if self.case == self.maze.end:
             self.finished = True
-            self.win = len(self.items) == len(self.maze.items)
