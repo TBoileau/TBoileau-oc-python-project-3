@@ -1,5 +1,6 @@
 """No library."""
 
+
 class BadCellException(Exception):
     """
     BadCellException.
