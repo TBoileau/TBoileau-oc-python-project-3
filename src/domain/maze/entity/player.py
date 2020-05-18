@@ -15,7 +15,7 @@ class Player(Character):
     Child class of Character.
     A player has a list of items in his backpack.
     And a player is always on a cell.
-    Then, a player can move on the maze.
+    Then, a player can move on the mazess.
     """
 
     def __init__(self, name: str, maze):
@@ -39,19 +39,19 @@ class Player(Character):
         return len(self.items) == len(self.maze.items)
 
     def start(self):
-        """Place the player of the start case of maze."""
+        """Place the player of the start case of mazess."""
         self.case = self.maze.start
 
     def move(self, direction: str):
         """
-        Move the player on maze.
+        Move the player on mazess.
 
-        A player can move on the maze if the next case is empty.
+        A player can move on the mazess if the next case is empty.
         If the next case contains a item, than the player pick up
         and place it in his backpack.
         Finally, if the player reaches the end,
         we check if he has in his backpack all the items
-        that were present in the maze, then the player can win the game.
+        that were present in the mazess, then the player can win the game.
 
         :param direction:
         """

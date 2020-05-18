@@ -19,7 +19,7 @@ class CellComponent:
 
     def __init__(self, cell: Cell, window: pygame.Surface):
         """
-        Create and position a cell in maze.
+        Create and position a cell in mazess.
 
         :param cell:
         :param window:

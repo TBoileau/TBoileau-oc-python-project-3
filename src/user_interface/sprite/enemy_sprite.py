@@ -19,9 +19,9 @@ class EnemySprite(Sprite):
         """
         Define enemy stripe.
 
-        Add enemy in maze UI.
+        Add enemy in mazess UI.
         Load image from assets folder,
-        and place it in maze on the end cell.
+        and place it in mazess on the end cell.
 
         :param enemy:
         """

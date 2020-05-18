@@ -11,12 +11,12 @@ class MazeResolver:
     """
     MazeResolver.
 
-    This service resolve the maze by exploring all the possibilities.
+    This service resolve the mazess by exploring all the possibilities.
     """
 
     def __init__(self, maze: Maze):
         """
-        Initialize the maze resolver.
+        Initialize the mazess resolver.
 
         :param maze:
         """
@@ -26,7 +26,7 @@ class MazeResolver:
 
     def resolve(self, goal: Case, return_to_start: bool) -> "MazeResolver":
         """
-        Resolve the maze.
+        Resolve the mazess.
 
         Determine all directions from the start to the goal cell.
         If we need to return to the start cell, we reverse directions and

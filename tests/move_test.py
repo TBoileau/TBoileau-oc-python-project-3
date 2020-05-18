@@ -5,11 +5,18 @@ from src.domain.maze.entity.maze import Maze
 from src.domain.maze.exception.bad_cell_exception import BadCellException
 from src.domain.maze.resolver.maze_resolver import MazeResolver
 from src.domain.maze.store.direction import Direction
+from src.infrastructure.adapter.primary.maze_generator import MazeGenerator
 
 
 def test_if_player_win():
+    maze_generator: MazeGenerator = MazeGenerator()
     maze: Maze = Maze(
-        3, 3, "Mac Gyver", "Guard", ['ether', 'needle', 'plastic_tube']
+        maze_generator,
+        3,
+        3,
+        "Mac Gyver",
+        "Guard",
+        ['ether', 'needle', 'plastic_tube']
     )
     maze_resolver: MazeResolver = MazeResolver(maze)
 
@@ -30,8 +37,14 @@ def test_if_player_win():
 
 
 def test_if_player_lose():
+    maze_generator: MazeGenerator = MazeGenerator()
     maze: Maze = Maze(
-        5, 5, "Mac Gyver", "Guard", ['ether', 'needle', 'plastic_tube']
+        maze_generator,
+        5,
+        5,
+        "Mac Gyver",
+        "Guard",
+        ['ether', 'needle', 'plastic_tube']
     )
 
     maze_resolver: MazeResolver = MazeResolver(maze).resolve(maze.end, False)
@@ -47,7 +60,9 @@ def test_if_player_lose():
 
 def test_if_failed_with_wrong_direction():
     with pytest.raises(AssertionError):
+        maze_generator: MazeGenerator = MazeGenerator()
         maze: Maze = Maze(
+            maze_generator,
             5,
             5,
             "Mac Gyver",
@@ -59,7 +74,9 @@ def test_if_failed_with_wrong_direction():
 
 def test_if_failed_with_bad_direction():
     with pytest.raises(BadCellException):
+        maze_generator: MazeGenerator = MazeGenerator()
         maze: Maze = Maze(
+            maze_generator,
             5,
             5,
             "Mac Gyver",

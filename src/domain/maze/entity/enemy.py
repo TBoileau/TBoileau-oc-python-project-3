@@ -10,5 +10,5 @@ class Enemy(Character):
     """
 
     def start(self):
-        """Place the enemy of the end case of maze."""
+        """Place the enemy of the end case of mazess."""
         self.case = self.maze.end

@@ -2,20 +2,17 @@
 import random
 from typing import List, Tuple, Dict
 
+from src.domain.maze.port.maze_generator_port import MazeGeneratorPort
 from src.domain.maze.store.direction import Direction
 
 
-class MazeGenerator:
+class MazeGenerator(MazeGeneratorPort):
     """
     MazeGenerator.
 
-    This class generate a maze with Prim algorithm.
+    This class generate a mazess with Prim algorithm
+    by implementing the MazeGeneratorPort interface.
     """
-
-    START: int = 2
-    WALL: int = 0
-    END: int = 3
-    EMPTY: int = 1
 
     @staticmethod
     def new_position(
@@ -53,12 +50,12 @@ class MazeGenerator:
             position[1] + directions[1][direction]
         )
 
-    @staticmethod
-    def generate(x: int, y: int) -> List[List[int]]:
+    def generate(self, x: int, y: int) -> List[List[int]]:
         """
-        Generate a maze.
+        Generate a mazess.
 
-        With Prim algorithm, we generate a maze that contains 4 types of cell.
+        With Prim algorithm, we generate a mazess
+        that contains 4 types of cell :
         0 : wall
         1 : empty cell
         2 : start cell
